@@ -1,0 +1,99 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <PlatformTarget>x86</PlatformTarget>
+    <UserSecretsId>319e4bd4-7b0d-46aa-9c2e-7e19d5b93252</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Bonde.png" />
+    <None Remove="Assets\BuskeBakgrund.png" />
+    <None Remove="Assets\chicken.png" />
+    <None Remove="Assets\gameboard.png" />
+
+    <None Remove="Assets\Images\chicken_views.png" />
+    <None Remove="Assets\Images\newEndPage.png" />
+    <None Remove="Assets\Images\pigDown.png" />
+    <None Remove="Assets\Images\pigLeft.png" />
+    <None Remove="Assets\Images\pigRight.png" />
+    <None Remove="Assets\Images\pigUp.png" />
+    <None Remove="Assets\Images\startView.png" />
+
+    <None Remove="Assets\Icons\soundOff.png" />
+    <None Remove="Assets\Icons\soundOn.png" />
+
+    <None Remove="Assets\Jord.png" />
+    <None Remove="Assets\Pig.png" />
+    <None Remove="Assets\slutsida.png" />
+    <None Remove="Assets\Sounds\Banjo.mp3" />
+    <None Remove="Assets\Sounds\chickenDies1.wav" />
+    <None Remove="Assets\Sounds\chickenDies2.wav" />
+    <None Remove="Assets\Sounds\chickenDies3.wav" />
+    <None Remove="Assets\Sounds\chickenSpawns1.wav" />
+    <None Remove="Assets\Sounds\chickenSpawns2.wav" />
+    <None Remove="Assets\Sounds\chickenSpawns3.wav" />
+    <None Remove="Assets\Sounds\gameOver.mp3" />
+    <None Remove="Assets\startsida.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="Npgsql" Version="9.0.3" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\gameBackground.png" />
+    <Resource Include="Assets\Images\chicken_views.png" />
+    <Resource Include="Assets\Images\farmer.png" />
+    <Resource Include="Assets\Images\backgroundBush.png" />
+    <Resource Include="Assets\Images\chicken.png" />
+    <Resource Include="Assets\Images\ground.png" />
+    <Resource Include="Assets\Images\newEndPage.png" />
+    <Content Include="Assets\Icons\soundOff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\soundOn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\banjo.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Assets\Images\pigDown.png" />
+    <Resource Include="Assets\Images\pigLeft.png" />
+    <Resource Include="Assets\Images\pigRight.png" />
+    <Resource Include="Assets\Images\pigUp.png" />
+
+    <Resource Include="Assets\Images\startView.png" />
+
+    <Content Include="Assets\Sounds\chickenDies1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\chickenDies2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\chickenDies3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\chickenSpawns2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\chickenSpawns3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\gameOver.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\chickenSpawns1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+  </ItemGroup>
+
+</Project>

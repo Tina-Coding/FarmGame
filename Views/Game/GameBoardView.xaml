@@ -1,0 +1,141 @@
+﻿<UserControl
+    x:Class="SUP.Views.Game.GameBoardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:SUP.Views.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:gameVM="clr-namespace:SUP.ViewModels.Game"
+    xmlns:local="clr-namespace:SUP.Views.Game"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Focusable="True"
+    mc:Ignorable="d">
+    <UserControl.InputBindings>
+        <KeyBinding
+            Key="Up"
+            Command="{Binding KeyCommand}"
+            CommandParameter="{x:Static Key.Up}" />
+        <KeyBinding
+            Key="Down"
+            Command="{Binding KeyCommand}"
+            CommandParameter="{x:Static Key.Down}" />
+        <KeyBinding
+            Key="Left"
+            Command="{Binding KeyCommand}"
+            CommandParameter="{x:Static Key.Left}" />
+        <KeyBinding
+            Key="Right"
+            Command="{Binding KeyCommand}"
+            CommandParameter="{x:Static Key.Right}" />
+        <KeyBinding
+            Key="Space"
+            Command="{Binding KeyCommand}"
+            CommandParameter="{x:Static Key.Space}" />
+    </UserControl.InputBindings>
+    <UserControl.Resources>
+        <converters:BoardCellToColorConverter x:Key="BoardCellToColorConverter" />
+
+        <!--  Score propertychange animation  -->
+        <Style x:Key="ScorePropertyTriggerStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="30" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ChickenIsCollected}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    AutoReverse="True"
+                                    Storyboard.TargetProperty="FontSize"
+                                    To="40"
+                                    Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/gameBackground.png" />
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock
+                FontSize="30"
+                Foreground="Black"
+                Text="Rädda alla kycklingar:" />
+            <TextBlock
+                FontSize="30"
+                Foreground="Black"
+                Style="{StaticResource ScorePropertyTriggerStyle}"
+                Text="{Binding Score, FallbackValue=score}" />
+        </StackPanel>
+
+        <Viewbox
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="20"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Stretch="Uniform">
+
+            <Border BorderBrush="BurlyWood" BorderThickness="20">
+                <Grid Width="600" Height="450">
+                    <TextBlock
+                        Width="237"
+                        Margin="0,153,0,148"
+                        HorizontalAlignment="Center"
+                        Panel.ZIndex="1"
+                        FontSize="70"
+                        Foreground="White"
+                        Text="{Binding OverlayInfo, FallbackValue=3}"
+                        TextAlignment="Center" />
+                    <!--  Källa: https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.panel.zindex?view=windowsdesktop-9.0  -->
+                    <ItemsControl ItemsSource="{Binding Cells}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid
+                                    Columns="{Binding Columns}"
+                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                    Rows="{Binding Rows}"
+                                    SnapsToDevicePixels="True" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Margin" Value="0" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+
+                                <Image Source="{Binding CellType, Converter={StaticResource BoardCellToColorConverter}}" Stretch="Fill" />
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Border>
+        </Viewbox>
+
+    </Grid>
+</UserControl>
+
